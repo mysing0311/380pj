@@ -18,4 +18,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
         class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
     <property name="prefix" value="/WEB-INF/jsp/view/" />
     <property name="suffix" value=".jsp" />
+  </bean>
+  
 </beans>
