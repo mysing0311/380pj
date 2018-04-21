@@ -13,9 +13,9 @@ CREATE TABLE user_roles (
 );
 
 INSERT INTO users VALUES ('michael', 'michaelpw');
-INSERT INTO user_roles(username, role) VALUES ('keith', 'ROLE_USER');
-INSERT INTO user_roles(username, role) VALUES ('keith', 'ROLE_ADMIN');
+INSERT INTO user_roles(username, role) VALUES ('michael', 'ROLE_USER');
+INSERT INTO user_roles(username, role) VALUES ('michael', 'ROLE_ADMIN');
 
 INSERT INTO users VALUES ('naomi', 'naomipw');
-INSERT INTO user_roles(username, role) VALUES ('keith', 'ROLE_USER');
-INSERT INTO user_roles(username, role) VALUES ('keith', 'ROLE_ADMIN');
+INSERT INTO user_roles(username, role) VALUES ('naomi', 'ROLE_USER');
+INSERT INTO user_roles(username, role) VALUES ('naomi', 'ROLE_ADMIN');
