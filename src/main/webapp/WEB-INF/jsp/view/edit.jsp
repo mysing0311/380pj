@@ -12,17 +12,17 @@
 
         <h2>Item #${item.id}</h2>
         <form:form method="POST" enctype="multipart/form-data" modelAttribute="itemForm">   
-            <form:label path="subject">Item Name:</form:label><br/>
-            <form:input type="text" path="subject" /><br/><br/>
+            <form:label path="itemName">Item Name:</form:label><br/>
+            <form:input type="text" path="itemName" /><br/><br/>
             
-            <form:label path="body">Description:</form:label><br/>
+            <form:label path="descript">Description:</form:label><br/>
             <form:textarea path="body" rows="5" cols="30" /><br/><br/>
             
             <form:label path="price">Expected Price:</form:label><br/>
             <form:input type="text" path="price" /><br/><br/>
             
             <c:if test="${fn:length(item.photos) > 0}">
-                <b>Attachments:</b><br/>
+                <b>Photos:</b><br/>
                 <ul>
                     <c:forEach items="${item.photos}" var="attachment">
                         <li>

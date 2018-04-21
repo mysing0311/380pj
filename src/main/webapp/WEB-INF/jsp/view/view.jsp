@@ -10,7 +10,7 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Item #${item.id}: <c:out value="${item.subject}" /></h2>
+        <h2>Item #${item.id}: <c:out value="${item.itemName}" /></h2>
         <security:authorize access="hasRole('ADMIN') or principal.username=='${item.customerName}'">            
             [<a href="<c:url value="/item/edit/${item.id}" />">Edit</a>]
         </security:authorize>
@@ -21,7 +21,7 @@
         <br /><br />
         
         <i>Owner's Name - <c:out value="${item.ownerName}" /></i><br /><br />
-        <c:out value="${item.body}" /><br /><br />
+        <c:out value="${item.descript}" /><br /><br />
         
         <c:if test="${fn:length(item.attachments) > 0}">
             Attachments:
@@ -35,7 +35,7 @@
         
         <!--
         <i>Price: $ <c:out value="${item.ownerName}" /></i><br /><br />
-        <c:out value="${item.body}" /><br /><br />
+        <c:out value="${item.price}" /><br /><br />
         
         <i>No. of bids:  <c:out value="${item.ownerName}" /></i><br /><br />
         <c:out value="${item.bids}" /><br /><br />
