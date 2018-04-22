@@ -24,4 +24,6 @@ public interface ItemService {
 
     public void deletePhoto(long itemId, String name)
             throws PhotoNotFound;
+    
+    
 }
