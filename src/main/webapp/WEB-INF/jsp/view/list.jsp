@@ -22,8 +22,8 @@
         </c:when>
         <c:otherwise>
             <c:forEach items="${itemDatabase}" var="item">
-                Ticket ${item.id}:
-                <a href="<c:url value="/ticket/view/${item.id}" />">
+                Item ${item.id}:
+                <a href="<c:url value="/item/view/${item.id}" />">
                    <c:out value="${item.subject}" /></a>
                 (customer: <c:out value="${item.customerName}" />)
                 <security:authorize access="hasRole('ADMIN') or

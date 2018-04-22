@@ -24,7 +24,7 @@
             <c:if test="${fn:length(item.photos) > 0}">
                 <b>Photos:</b><br/>
                 <ul>
-                    <c:forEach items="${item.photos}" var="attachment">
+                    <c:forEach items="${item.photos}" var="photo">
                         <li>
                             <c:out value="${photo.name}" />
                             [<a href="<c:url 
