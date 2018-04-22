@@ -23,13 +23,13 @@
         <i>Owner's Name - <c:out value="${item.ownerName}" /></i><br /><br />
         <c:out value="${item.descript}" /><br /><br />
         
-        <c:if test="${fn:length(item.attachments) > 0}">
-            Attachments:
-            <c:forEach items="${item.attachments}" var="attachment"
+        <c:if test="${fn:length(item.photos) > 0}">
+            Photos:
+            <c:forEach items="${item.photos}" var="photo"
                        varStatus="status">
                 <c:if test="${!status.first}">, </c:if>
-                <a href="<c:url value="/item/${item.id}/attachment/${attachment.name}" />">
-                    <c:out value="${attachment.name}" /></a>
+                <a href="<c:url value="/item/${item.id}/photo/${photo.name}" />">
+                    <c:out value="${photo.name}" /></a>
             </c:forEach><br /><br />   
         </c:if>
         
