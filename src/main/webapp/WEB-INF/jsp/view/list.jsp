@@ -17,8 +17,8 @@
     <a href="<c:url value="/item/create" />">Create an Item</a><br /><br />
 
     <c:choose>
-        <c:when test="${fn:length(ticketDatabase) == 0}">
-            <i>There are no tickets in the system.</i>
+        <c:when test="${fn:length(itemDatabase) == 0}">
+            <i>There are no bidding items in the system.</i>
         </c:when>
         <c:otherwise>
             <c:forEach items="${itemDatabase}" var="item">

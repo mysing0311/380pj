@@ -21,7 +21,7 @@ public class UserRole implements Serializable {
 
     @Column(insertable = false, updatable = false)
     private String username;
-    private String role;
+    private String userRole;
 
     @ManyToOne
     @JoinColumn(name = "username")
@@ -30,9 +30,9 @@ public class UserRole implements Serializable {
     public UserRole() {
     }
 
-    public UserRole(ItemUser user, String role) {
+    public UserRole(ItemUser user, String userRole) {
         this.user = user;
-        this.role = role;
+        this.userRole = userRole;
     }
 
     public int getId() {
@@ -52,11 +52,12 @@ public class UserRole implements Serializable {
     }
 
     public String getRole() {
-        return role;
+        return userRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(String userRole) {
+        this.userRole = userRole;
+                
     }
 
     public ItemUser getUser() {
