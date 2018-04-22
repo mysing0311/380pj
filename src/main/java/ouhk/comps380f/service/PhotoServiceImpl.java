@@ -14,7 +14,7 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     @Transactional
-    public Photo getPhoto(long ticketId, String name) {
-        return photoRepo.findByTicketIdAndName(ticketId, name);
+    public Photo getPhoto(long photoId, String name) {
+        return photoRepo.findByPhotoIdAndName(photoId, name);
     }
 }

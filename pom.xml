@@ -10,8 +10,9 @@
     <name>comp380pj</name>
 
     <properties>
-        <hibernate.version>5.2.16.Final</hibernate.version>
         <spring.framework.version>4.3.14.RELEASE</spring.framework.version>
+        <spring.security.version>4.2.4.RELEASE</spring.security.version>
+        <hibernate.version>5.2.16.Final</hibernate.version>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -49,9 +50,19 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.0.1.RELEASE</version>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

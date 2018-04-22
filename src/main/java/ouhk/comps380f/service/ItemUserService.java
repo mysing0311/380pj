@@ -14,7 +14,7 @@ import ouhk.comps380f.dao.ItemUserRepository;
 import ouhk.comps380f.model.ItemUser;
 import ouhk.comps380f.model.UserRole;
 
-@Service
+@Service 
 public class ItemUserService implements UserDetailsService {
 
     @Resource
@@ -32,5 +32,5 @@ public class ItemUserService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
         return new User(itemUser.getUsername(), itemUser.getPassword(), authorities);
-    }
+    } 
 }
