@@ -25,7 +25,7 @@ public class Product implements Serializable {
     private String bidNum;
     @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER,
        cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Attachment> attachments = new ArrayList<>(); 
+    private List<Photo> attachments = new ArrayList<>(); 
     private List<String> comments = new ArrayList<>();
     
 
@@ -65,15 +65,15 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public List<Attachment> getAttachments() {
+    public List<Photo> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(List<Attachment> attachments) {
+    public void setAttachments(List<Photo> attachments) {
         this.attachments = attachments;
     }
 
-    public void deleteAttachment(Attachment attachment) {
+    public void deleteAttachment(Photo attachment) {
         //attachment.setTicket(null);
         this.attachments.remove(attachment);
     }
