@@ -38,8 +38,16 @@
         Comment: <c:out value="${ticket.comment}" /><br /><br /> 
         
         Winner: <c:out value="${ticket.winner}" /><br /><br />
-
+        
+        <c:if test="${ticket.status eq 'available'}">
         <a href="<c:url value="/ticket/bid/${ticket.id}" />">Bid the item</a><br /><br /> 
+        </c:if>
+        
+        <security:authorize access="hasRole('ADMIN') or principal.username=='${ticket.customerName}'">            
+            <form:form method="POST" enctype="multipart/form-data" modelAttribute="ticketForm">
+        <input type="submit" value="End the bid"/><br /><br />
+        </form:form>   
+        </security:authorize>
         
         <a href="<c:url value="/ticket" />">Return to list items</a>
     </body>

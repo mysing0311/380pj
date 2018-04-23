@@ -235,4 +235,12 @@ public class TicketController {
         ticketService.updateWinner(ticketId, principal.getName());
         return new RedirectView("/ticket/view/" + ticketId, true);
     }
+     @RequestMapping(value = "view/{ticketId}", method = RequestMethod.POST)
+    public View endBid(@PathVariable("ticketId") long ticketId, Form form, Principal principal){
+        Ticket ticket = ticketService.getTicket(ticketId);
+        
+       ticketService.changeStatus(ticketId);
+        
+        return new RedirectView("/ticket/view/" + ticketId, true);
+    }
 }

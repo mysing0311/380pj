@@ -27,4 +27,5 @@ public interface TicketService {
     
     public void updateBidNumAndPrice(long id , int bidNum, String price);
     public void updateWinner(long id, String customerName);
+    public void changeStatus(long id);
 }
