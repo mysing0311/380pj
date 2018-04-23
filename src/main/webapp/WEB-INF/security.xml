@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <b:beans xmlns="http://www.springframework.org/schema/security"
          xmlns:b="http://www.springframework.org/schema/beans"
@@ -26,6 +25,31 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
         <b:property name="password" value="admin" />
     </b:bean>
    
+    <b:bean id="hibernateJpaVendorAdapter"
+            class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+    <!-- Configure the transaction manager bean -->
+    <b:bean id="transactionManager"
+            class="org.springframework.orm.jpa.JpaTransactionManager">
+        <b:property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </b:bean>
+    <!-- Enable annotation driven transaction management -->
+    <tx:annotation-driven/>
+    <!-- Configure base package of the repository interfaces -->
+    <jpa:repositories base-package="ouhk.comps380f.dao"/>
+    <b:bean id="entityManagerFactory"
+            class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <b:property name="dataSource" ref="dataSource"/>
+        <b:property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+        <!-- Set JPA properties -->
+        <b:property name="jpaProperties">
+            <b:props>
+                <b:prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</b:prop>
+                <b:prop key="hibernate.show_sql">true</b:prop>
+            </b:props>
+        </b:property>
+        <!-- Set base package of your entities -->
+        <b:property name="packagesToScan" value="ouhk.comps380f.model"/>
+    </b:bean>
     <authentication-manager>
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
