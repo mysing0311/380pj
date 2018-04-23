@@ -72,6 +72,21 @@ public class TicketUserController {
         ticketUserRepo.save(user);
         return new RedirectView("/user/list", true);
     }
+    
+    @RequestMapping(value = "register", method = RequestMethod.GET)
+    public ModelAndView register() {
+        return new ModelAndView("register", "ticketUser", new Form());
+    }
+
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    public View register(Form form) throws IOException {
+        TicketUser user = new TicketUser(form.getUsername(),
+                form.getPassword(),
+                form.getRoles()
+        );
+        ticketUserRepo.save(user);
+        return new RedirectView("/user/list", true);
+    }
 
     @RequestMapping(value = "delete/{username}", method = RequestMethod.GET)
     public View deleteTicket(@PathVariable("username") String username) {

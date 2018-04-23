@@ -10,7 +10,7 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Ticket #${ticket.id}: <c:out value="${ticket.subject}" /></h2>
+        <h2>Item #${ticket.id}: <c:out value="${ticket.subject}" /></h2>
         <security:authorize access="hasRole('ADMIN') or principal.username=='${ticket.customerName}'">            
             [<a href="<c:url value="/ticket/edit/${ticket.id}" />">Edit</a>]
         </security:authorize>
@@ -18,10 +18,10 @@
             [<a href="<c:url value="/ticket/delete/${ticket.id}" />">Delete</a>]
         </security:authorize>
         <br /><br />
-        <i>Customer Name - <c:out value="${ticket.customerName}" /></i><br /><br />
+        <i>Owner Name - <c:out value="${ticket.customerName}" /></i><br /><br />
         <c:out value="${ticket.body}" /><br /><br />
         <c:if test="${fn:length(ticket.attachments) > 0}">
-            Attachments:
+            Photos:
             <c:forEach items="${ticket.attachments}" var="attachment"
                        varStatus="status">
                 <c:if test="${!status.first}">, </c:if>
@@ -29,6 +29,6 @@
                     <c:out value="${attachment.name}" /></a>
             </c:forEach><br /><br />
         </c:if>
-        <a href="<c:url value="/ticket" />">Return to list tickets</a>
+        <a href="<c:url value="/ticket" />">Return to list items</a>
     </body>
 </html>
