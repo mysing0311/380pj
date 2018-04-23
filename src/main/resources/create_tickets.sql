@@ -19,3 +19,9 @@ CREATE TABLE attachment (
     PRIMARY KEY (id),
     FOREIGN KEY (ticket_id) REFERENCES ticket(id) 
 );
+
+CREATE TABLE Comment (
+    id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    ticketID INTEGER DEFAULT NULL,
+    comment VARCHAR(255),
+    );

@@ -25,7 +25,13 @@ public class Ticket implements Serializable {
     private String subject;
 
     private String body;
-
+    
+    private double price;
+    
+    private int bitnum;
+    
+    private final String[] status = {"available","ended"};
+    
     @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Attachment> attachments = new ArrayList<>();
