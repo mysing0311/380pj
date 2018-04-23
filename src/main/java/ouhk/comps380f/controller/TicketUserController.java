@@ -31,6 +31,7 @@ public class TicketUserController {
         private String username;
         private String password;
         private String[] roles;
+        
 
         public String getUsername() {
             return username;

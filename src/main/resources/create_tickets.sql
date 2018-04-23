@@ -4,8 +4,8 @@ CREATE TABLE ticket (
     subject VARCHAR(255) NOT NULL,
     body VARCHAR(255) NOT NULL,
     price VARCHAR(255) NOT NULL,
-    bidNum int default 0,
-    status VARCHAR(255) default 'avaliable',
+    bidNum VARCHAR(255) DEFAULT '0',
+    status VARCHAR(255) DEFAULT 'available',
     winner VARCHAR(255),
     PRIMARY KEY (id)
 );

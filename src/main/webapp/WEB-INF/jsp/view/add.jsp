@@ -21,7 +21,7 @@
             <b>Photos</b><br/>
             <input type="file" name="attachments" multiple="multiple"/><br/><br/>
             
-            <form:label path="price">Price($)</form:label><br/>
+            <form:label path="price">Expected Price($)</form:label><br/>
             <form:input type="text" path="price" /><br/><br/>
             
             <b>Comment</b><br/>

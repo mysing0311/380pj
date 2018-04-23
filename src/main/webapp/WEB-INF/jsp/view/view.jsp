@@ -30,8 +30,11 @@
             </c:forEach><br /><br />
         </c:if>
         Price: $<c:out value="${ticket.price}" /><br /><br />
-     
         
+        No. of bids: <c:out value="${ticket.bidNum}" /><br /><br />
+        
+        Status: <c:out value="${ticket.status}" /><br /><br />
+
           
         <a href="<c:url value="/ticket" />">Return to list items</a>
     </body>

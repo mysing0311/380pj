@@ -17,7 +17,7 @@ public class UserRole implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_role_id")
-    private int id;
+    private long id;
 
     @Column(insertable = false, updatable = false)
     private String username;
@@ -35,11 +35,11 @@ public class UserRole implements Serializable {
         this.role = role;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

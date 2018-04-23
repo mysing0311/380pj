@@ -11,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Ticket implements Serializable {
@@ -30,7 +28,9 @@ public class Ticket implements Serializable {
 
   private String price;
 
-  //private int bitNum;
+  private String bidNum;
+  
+  private String status;
   //private final String[] status = {"available","ended"};
 
 
@@ -78,6 +78,22 @@ public class Ticket implements Serializable {
     this.price = price;
   }
 
+  public String getBidNum() {
+    return bidNum;
+  }
+
+  public void setBidNum(String bidNum) {
+    this.bidNum = bidNum;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+  
   public List<Attachment> getAttachments() {
     return attachments;
   }
@@ -90,9 +106,5 @@ public class Ticket implements Serializable {
     attachment.setTicket(null);
     this.attachments.remove(attachment);
   }
-
-
-
-
 
 }

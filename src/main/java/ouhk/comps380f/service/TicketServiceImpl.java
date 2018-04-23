@@ -61,13 +61,14 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional
     public long createTicket(String customerName, String subject,
-            String body, List<MultipartFile> attachments ,String price) throws IOException {
+            String body, List<MultipartFile> attachments ,String price, String bidNum, String status) throws IOException {
         Ticket ticket = new Ticket();
         ticket.setCustomerName(customerName);
         ticket.setSubject(subject);
         ticket.setBody(body);
         ticket.setPrice(price);
-
+        ticket.setBidNum(bidNum);
+        ticket.setStatus(status);
 
         for (MultipartFile filePart : attachments) {
             Attachment attachment = new Attachment();
@@ -90,7 +91,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional(rollbackFor = TicketNotFound.class)
     public void updateTicket(long id, String subject,
-            String body, List<MultipartFile> attachments)
+            String body, List<MultipartFile> attachments, String price, String bidNum, String status)
             throws IOException, TicketNotFound {
         Ticket updatedTicket = ticketRepo.findOne(id);
         if (updatedTicket == null) {
