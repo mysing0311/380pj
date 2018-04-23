@@ -1,7 +1,6 @@
 package ouhk.comps380f.controller;
 
 import java.io.IOException;
-import static java.util.Collections.list;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
@@ -22,10 +21,14 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 import ouhk.comps380f.dao.TicketUserRepository;
 import ouhk.comps380f.model.TicketUser;
+import ouhk.comps380f.validator.UserValidator;
 
 @Controller
 @RequestMapping("user")
 public class TicketUserController {
+
+    @Autowired
+    private UserValidator userValidator;
 
     @Resource
     TicketUserRepository ticketUserRepo;
@@ -96,6 +99,9 @@ public class TicketUserController {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@ModelAttribute("ticketUser") @Valid Form form,
             BindingResult result) throws IOException {
+        
+        userValidator.validate(form, result);
+        
         if (result.hasErrors()) {
             return "addUser";
         }
