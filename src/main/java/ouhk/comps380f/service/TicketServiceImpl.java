@@ -68,7 +68,7 @@ public class TicketServiceImpl implements TicketService {
         ticket.setBody(body);
         ticket.setPrice(price);
         ticket.setBidNum(bidNum);
-        ticket.setStatus(status);
+        ticket.setStatus("available");
         ticket.setComment(comment);
 
         for (MultipartFile filePart : attachments) {
