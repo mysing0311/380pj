@@ -22,13 +22,13 @@
             class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <b:property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
         <b:property name="url" value="jdbc:derby://localhost:1527/bidding" />
-        <b:property name="username" value="nbuser" />
-        <b:property name="password" value="nbuser" />
+        <b:property name="username" value="dbuser" />
+        <b:property name="password" value="dbuser" />
     </b:bean>
 
     <http auto-config="true">
-        <intercept-url pattern="/ticket/delete/**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/ticket/**" access="hasAnyRole('USER','ADMIN')" />
+        <intercept-url pattern="/item/delete/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/item/**" access="hasAnyRole('USER','ADMIN')" />
         <form-login login-page="/login" authentication-failure-url="/login?error" />
         <logout logout-success-url="/login?logout"
                 invalidate-session="true"

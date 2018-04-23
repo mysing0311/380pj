@@ -21,6 +21,8 @@ public class UserRole implements Serializable {
 
     @Column(insertable = false, updatable = false)
     private String username;
+    
+    @Column(name="role")
     private String userRole;
 
     @ManyToOne
@@ -51,14 +53,15 @@ public class UserRole implements Serializable {
         this.username = username;
     }
 
-    public String getRole() {
+    public String getUserRole() {
         return userRole;
     }
 
-    public void setRole(String userRole) {
+    public void setUserRole(String userRole) {
         this.userRole = userRole;
-                
     }
+
+    
 
     public ItemUser getUser() {
         return user;

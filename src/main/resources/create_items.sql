@@ -3,8 +3,6 @@ CREATE TABLE item (
     name VARCHAR(255) NOT NULL,
     itemName VARCHAR(255) NOT NULL,
     descript VARCHAR(255) NOT NULL,
-    price VARCHAR(255) NOT NULL,
-    status VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
 

@@ -29,7 +29,7 @@ public class ItemUserService implements UserDetailsService {
         }
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (UserRole role : itemUser.getRoles()) {
-            authorities.add(new SimpleGrantedAuthority(role.getRole()));
+            authorities.add(new SimpleGrantedAuthority(role.getUserRole()));
         }
         return new User(itemUser.getUsername(), itemUser.getPassword(), authorities);
     } 
