@@ -5,5 +5,5 @@ import ouhk.comps380f.model.Photo;
 
 public interface PhotoRepository extends JpaRepository<Photo, Long> {
 
-    public Photo findByPhotoIdAndName(long photoId, String name);
+    public Photo findByPhotoIdAndName(long itemId, String name);
 }

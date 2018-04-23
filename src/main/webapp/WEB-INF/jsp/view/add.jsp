@@ -16,11 +16,8 @@
             <form:input type="text" path="itemName" /><br/><br/>
             
             <form:label path="descript">Description:</form:label><br/>
-            <form:textarea path="body" rows="5" cols="30" /><br/><br/>
-            
-            <form:label path="price">Expected Price:</form:label><br/>
-            <form:input type="text" path="price" /><br/><br/>
-            
+            <form:textarea path="descript" rows="5" cols="30" /><br/><br/>
+       
             <b>Photos</b><br/>
             <input type="file" name="photos" multiple="multiple"/><br/><br/>
             <input type="submit" value="Submit"/>
