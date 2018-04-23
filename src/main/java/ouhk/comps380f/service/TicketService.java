@@ -26,4 +26,5 @@ public interface TicketService {
             throws AttachmentNotFound;
     
     public void updateBidNumAndPrice(long id , int bidNum, String price);
+    public void updateWinner(long id, String customerName);
 }

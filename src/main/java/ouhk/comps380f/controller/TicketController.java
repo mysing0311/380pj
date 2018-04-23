@@ -18,6 +18,7 @@ import ouhk.comps380f.exception.AttachmentNotFound;
 import ouhk.comps380f.exception.TicketNotFound;
 import ouhk.comps380f.model.Attachment;
 import ouhk.comps380f.model.Ticket;
+import ouhk.comps380f.model.TicketUser;
 import ouhk.comps380f.service.AttachmentService;
 import ouhk.comps380f.service.TicketService;
 import ouhk.comps380f.view.DownloadingView;
@@ -227,10 +228,11 @@ public class TicketController {
     }
 
     @RequestMapping(value = "bid/{ticketId}", method = RequestMethod.POST)
-    public View bid(@PathVariable("ticketId") long ticketId, Form form){
+    public View bid(@PathVariable("ticketId") long ticketId, Form form, Principal principal){
         Ticket ticket = ticketService.getTicket(ticketId);
         
         ticketService.updateBidNumAndPrice(ticketId,ticket.getBidNum(),form.getPrice());
+        ticketService.updateWinner(ticketId, principal.getName());
         return new RedirectView("/ticket/view/" + ticketId, true);
     }
 }

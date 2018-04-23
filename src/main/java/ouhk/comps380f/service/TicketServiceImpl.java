@@ -125,4 +125,11 @@ public class TicketServiceImpl implements TicketService {
       updatedTicket.setPrice(price);
       ticketRepo.save(updatedTicket);
     }
+    @Override
+    @Transactional(rollbackFor = TicketNotFound.class)
+    public void updateWinner(long id, String customerName){
+      Ticket updatedTicket =ticketRepo.findOne(id);
+      updatedTicket.setWinner(customerName);
+      ticketRepo.save(updatedTicket);
+    }
 }

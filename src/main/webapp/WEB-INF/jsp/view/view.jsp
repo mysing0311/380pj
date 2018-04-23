@@ -36,6 +36,8 @@
         Status: <c:out value="${ticket.status}" /><br /><br />
         
         Comment: <c:out value="${ticket.comment}" /><br /><br /> 
+        
+        Winner: <c:out value="${ticket.winner}" /><br /><br />
 
         <a href="<c:url value="/ticket/bid/${ticket.id}" />">Bid the item</a><br /><br /> 
         

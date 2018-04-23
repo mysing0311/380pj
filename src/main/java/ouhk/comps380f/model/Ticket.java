@@ -32,6 +32,8 @@ public class Ticket implements Serializable {
   
   private String status;
   
+  private String winner;
+  
   private String comment;
   //private final String[] status = {"available","ended"};
 
@@ -115,6 +117,14 @@ public class Ticket implements Serializable {
 
   public void setComment(String comment) {
     this.comment = comment;
+  }
+
+  public String getWinner() {
+    return winner;
+  }
+
+  public void setWinner(String winner) {
+    this.winner = winner;
   }
 
   
