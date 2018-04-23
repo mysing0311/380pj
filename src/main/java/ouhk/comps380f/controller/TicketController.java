@@ -83,11 +83,11 @@ public class TicketController {
           this.price = price;
         }
 
-        public List<String> getComment() {
+        public List<String> getComments() {
           return comment;
         }
 
-        public void setComment(List<String> comment) {
+        public void setComments(List<String> comment) {
           this.comment = comment;
         }
 
@@ -96,7 +96,7 @@ public class TicketController {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(Form form, Principal principal) throws IOException {
         long ticketId = ticketService.createTicket(principal.getName(),
-                form.getSubject(), form.getBody(), form.getAttachments(),form.getPrice());
+                form.getSubject(), form.getBody(), form.getAttachments(),form.getPrice(),form.getComments());
         return "redirect:/ticket/view/" + ticketId;
     }
 

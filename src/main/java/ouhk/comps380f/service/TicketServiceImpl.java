@@ -61,13 +61,13 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional
     public long createTicket(String customerName, String subject,
-            String body, List<MultipartFile> attachments ,String price) throws IOException {
+            String body, List<MultipartFile> attachments ,String price, List<String> comments) throws IOException {
         Ticket ticket = new Ticket();
         ticket.setCustomerName(customerName);
         ticket.setSubject(subject);
         ticket.setBody(body);
         ticket.setPrice(price);
-      
+        ticket.setComments(comments);
 
         for (MultipartFile filePart : attachments) {
             Attachment attachment = new Attachment();
@@ -81,6 +81,8 @@ public class TicketServiceImpl implements TicketService {
                 ticket.getAttachments().add(attachment);
             }
         }
+           
+        
         Ticket savedTicket = ticketRepo.save(ticket);
         return savedTicket.getId();
     }

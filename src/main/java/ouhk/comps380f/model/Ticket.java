@@ -11,81 +11,97 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Ticket implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
 
-    @Column(name = "name")
-    private String customerName;
+  @Column(name = "name")
+  private String customerName;
 
-    private String subject;
+  private String subject;
 
-    private String body;
-    
-    private String price;
-    
-    //private int bitNum;
-    
-    //private final String[] status = {"available","ended"};
-    
-    @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Attachment> attachments = new ArrayList<>();
+  private String body;
 
-    public long getId() {
-        return id;
-    }
+  private String price;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  //private int bitNum;
+  //private final String[] status = {"available","ended"};
+  @LazyCollection(LazyCollectionOption.FALSE)
+  @OneToMany(mappedBy = "ticket",
+          cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<String> comments = new ArrayList<>();
 
-    public String getCustomerName() {
-        return customerName;
-    }
+  @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER,
+          cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Attachment> attachments = new ArrayList<>();
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public String getSubject() {
-        return subject;
-    }
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+  public String getCustomerName() {
+    return customerName;
+  }
 
-    public String getBody() {
-        return body;
-    }
+  public void setCustomerName(String customerName) {
+    this.customerName = customerName;
+  }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
+  public String getSubject() {
+    return subject;
+  }
 
-    public String getPrice() {
-      return price;
-    }
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
 
-    public void setPrice(String price) {
-      this.price = price;
-    }
+  public String getBody() {
+    return body;
+  }
 
-    public List<Attachment> getAttachments() {
-        return attachments;
-    }
+  public void setBody(String body) {
+    this.body = body;
+  }
 
-    public void setAttachments(List<Attachment> attachments) {
-        this.attachments = attachments;
-    }
+  public String getPrice() {
+    return price;
+  }
 
-    public void deleteAttachment(Attachment attachment) {
-        attachment.setTicket(null);
-        this.attachments.remove(attachment);
-    }
+  public void setPrice(String price) {
+    this.price = price;
+  }
+
+  public List<Attachment> getAttachments() {
+    return attachments;
+  }
+
+  public void setAttachments(List<Attachment> attachments) {
+    this.attachments = attachments;
+  }
+
+  public void deleteAttachment(Attachment attachment) {
+    attachment.setTicket(null);
+    this.attachments.remove(attachment);
+  }
+
+  public List<String> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<String> comments) {
+    this.comments = comments;
+  }
+
+
+
 }
