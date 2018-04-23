@@ -3,6 +3,10 @@ CREATE TABLE ticket (
     name VARCHAR(255) NOT NULL,
     subject VARCHAR(255) NOT NULL,
     body VARCHAR(255) NOT NULL,
+    price double check(price>0),
+    bidNum int default 0,
+    status VARCHAR(255) default 'avaliable',
+    winner VARCHAR(255),
     PRIMARY KEY (id)
 );
 
