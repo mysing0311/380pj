@@ -61,7 +61,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional
     public long createTicket(String customerName, String subject,
-            String body, List<MultipartFile> attachments ,String price, String bidNum, String status, String comment) throws IOException {
+            String body, List<MultipartFile> attachments ,String price, int bidNum, String status, String comment) throws IOException {
         Ticket ticket = new Ticket();
         ticket.setCustomerName(customerName);
         ticket.setSubject(subject);
@@ -92,7 +92,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional(rollbackFor = TicketNotFound.class)
     public void updateTicket(long id, String subject,
-            String body, List<MultipartFile> attachments, String price, String bidNum, String status, String comment)
+            String body, List<MultipartFile> attachments, String price, String comment)
             throws IOException, TicketNotFound {
         Ticket updatedTicket = ticketRepo.findOne(id);
         if (updatedTicket == null) {
@@ -101,9 +101,7 @@ public class TicketServiceImpl implements TicketService {
 
         updatedTicket.setSubject(subject);
         updatedTicket.setBody(body);
-        updatedTicket.setBidNum(bidNum);
-        updatedTicket.setStatus(status);
-        updatedTicket.setComment(comment);
+        
 
         for (MultipartFile filePart : attachments) {
             Attachment attachment = new Attachment();
@@ -119,5 +117,12 @@ public class TicketServiceImpl implements TicketService {
         }
         ticketRepo.save(updatedTicket);
     }
-
+    @Override
+    @Transactional(rollbackFor = TicketNotFound.class)
+    public void updateBidNumAndPrice(long id , int bidNum, String price){
+      Ticket updatedTicket = ticketRepo.findOne(id);
+      updatedTicket.setBidNum(bidNum+1);
+      updatedTicket.setPrice(price);
+      ticketRepo.save(updatedTicket);
+    }
 }

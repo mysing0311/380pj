@@ -42,14 +42,18 @@ public class TicketController {
     public ModelAndView create() {
         return new ModelAndView("add", "ticketForm", new Form());
     }
-
+    
+    @RequestMapping(value = "bid", method = RequestMethod.GET)
+    public ModelAndView bid() {
+        return new ModelAndView("bid", "ticketForm", new Form());
+    }
     public static class Form {
 
         private String subject;
         private String body;
         private List<MultipartFile> attachments;
         private String price;
-        private String bidNum;
+        private int bidNum;
         private String status;
         private String comment;
         //private List<String> comment;
@@ -86,11 +90,11 @@ public class TicketController {
           this.price = price;
         }
 
-        public String getBidNum() {
+        public int getBidNum() {
           return bidNum;
         }
 
-        public void setBidNum(String bidNum) {
+        public void setBidNum(int bidNum) {
           this.bidNum = bidNum;
         }
         
@@ -125,6 +129,7 @@ public class TicketController {
     public String create(Form form, Principal principal) throws IOException {
         long ticketId = ticketService.createTicket(principal.getName(),
                 form.getSubject(), form.getBody(), form.getAttachments(),form.getPrice(),form.getBidNum(),form.getStatus(),form.getComment());
+        
         return "redirect:/ticket/view/" + ticketId;
     }
 
@@ -194,7 +199,7 @@ public class TicketController {
         }
 
         ticketService.updateTicket(ticketId, form.getSubject(),
-                form.getBody(), form.getAttachments(),form.getPrice(),form.getBidNum(),form.getStatus(),form.getComment());
+                form.getBody(), form.getAttachments(),form.getPrice(),form.getComment());
         return new RedirectView("/ticket/view/" + ticketId, true);
     }
 
@@ -207,5 +212,25 @@ public class TicketController {
         ticketService.deleteAttachment(ticketId, name);
         return "redirect:/ticket/edit/" + ticketId;
     }
+    
+     @RequestMapping(value = "bid/{ticketId}", method = RequestMethod.GET)
+    public ModelAndView bid(@PathVariable("ticketId") long ticketId) {
+        Ticket ticket = ticketService.getTicket(ticketId);
+        ModelAndView modelAndView = new ModelAndView("bid");
+        modelAndView.addObject("ticket", ticket);
 
+        Form ticketForm = new Form();
+        ticketForm.setPrice(ticket.getPrice());
+        ticketForm.setBidNum(ticket.getBidNum());
+        modelAndView.addObject("ticketForm", ticketForm);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "bid/{ticketId}", method = RequestMethod.POST)
+    public View bid(@PathVariable("ticketId") long ticketId, Form form){
+        Ticket ticket = ticketService.getTicket(ticketId);
+        
+        ticketService.updateBidNumAndPrice(ticketId,ticket.getBidNum(),form.getPrice());
+        return new RedirectView("/ticket/view/" + ticketId, true);
+    }
 }

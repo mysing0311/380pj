@@ -37,7 +37,8 @@
         
         Comment: <c:out value="${ticket.comment}" /><br /><br /> 
 
-          
+        <a href="<c:url value="/ticket/bid/${ticket.id}" />">Bid the item</a><br /><br /> 
+        
         <a href="<c:url value="/ticket" />">Return to list items</a>
     </body>
 </html>

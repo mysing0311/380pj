@@ -28,7 +28,7 @@ public class Ticket implements Serializable {
 
   private String price;
 
-  private String bidNum;
+  private int bidNum;
   
   private String status;
   
@@ -80,11 +80,11 @@ public class Ticket implements Serializable {
     this.price = price;
   }
 
-  public String getBidNum() {
+  public int getBidNum() {
     return bidNum;
   }
 
-  public void setBidNum(String bidNum) {
+  public void setBidNum(int bidNum) {
     this.bidNum = bidNum;
   }
 
@@ -116,5 +116,7 @@ public class Ticket implements Serializable {
   public void setComment(String comment) {
     this.comment = comment;
   }
+
+  
 
 }
