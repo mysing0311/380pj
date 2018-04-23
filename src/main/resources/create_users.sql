@@ -12,15 +12,15 @@ CREATE TABLE user_roles (
     FOREIGN KEY (username) REFERENCES users(username)
 );
 
-INSERT INTO users VALUES ('keith', 'keithpw');
-INSERT INTO user_roles(username, role) VALUES ('keith', 'ROLE_USER');
-INSERT INTO user_roles(username, role) VALUES ('keith', 'ROLE_ADMIN');
+INSERT INTO users VALUES ('michael', 'michaelpw');
+INSERT INTO user_roles(username, role) VALUES ('michael', 'ROLE_USER');
+INSERT INTO user_roles(username, role) VALUES ('michael', 'ROLE_ADMIN');
 
-INSERT INTO users VALUES ('andrew', 'andrewpw');
-INSERT INTO user_roles(username, role) VALUES ('andrew', 'ROLE_ADMIN');
+INSERT INTO users VALUES ('naomi', 'naomipw');
+INSERT INTO user_roles(username, role) VALUES ('naomi', 'ROLE_ADMIN');
 
-INSERT INTO users VALUES ('maria', 'mariapw');
-INSERT INTO user_roles(username, role) VALUES ('maria', 'ROLE_USER');
+INSERT INTO users VALUES ('david', 'davidpw');
+INSERT INTO user_roles(username, role) VALUES ('david', 'ROLE_USER');
 
-INSERT INTO users VALUES ('oliver', 'oliverpw');
-INSERT INTO user_roles(username, role) VALUES ('oliver', 'ROLE_USER');
+INSERT INTO users VALUES ('long', 'longpw');
+INSERT INTO user_roles(username, role) VALUES ('long', 'ROLE_USER');
