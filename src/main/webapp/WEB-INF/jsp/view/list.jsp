@@ -4,12 +4,13 @@
         <title>Online Bidding</title>
     </head>
     <body>
+       <security:authorize access="hasAnyRole('USER','ADMIN')">  
         <c:url var="logoutUrl" value="/logout"/>
         <form action="${logoutUrl}" method="post">
             <input type="submit" value="Log out" />
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-
+</security:authorize>
         <h2>Items</h2>
         <security:authorize access="hasRole('ADMIN')">    
             <a href="<c:url value="/user" />">Manage User Accounts</a><br /><br />

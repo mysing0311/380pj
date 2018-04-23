@@ -37,7 +37,11 @@ public class TicketController {
         model.addAttribute("ticketDatabase", ticketService.getTickets());
         return "list";
     }
-    
+    @RequestMapping(value = "index", method = RequestMethod.GET)
+    public ModelAndView index(ModelMap model) {
+      model.addAttribute("ticketDatabase", ticketService.getTickets());
+        return new ModelAndView("index", "ticketForm", new Form());
+    }
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public ModelAndView create() {
         return new ModelAndView("add", "ticketForm", new Form());

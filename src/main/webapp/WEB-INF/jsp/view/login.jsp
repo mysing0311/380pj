@@ -12,7 +12,7 @@
         </c:if>
         <h2>Online Bidding Login</h2>
         <form action="login" method="POST">
-            <a href="<c:url value="/index" />">Item List</a><br/><br/>
+            <a href="<c:url value="/ticket/index" />">Item List</a><br/><br/>
             <label for="username">Username:</label><br/>
             <input type="text" id="username" name="username" /><br/><br/>
             <label for="password">Password:</label><br/>

@@ -9,8 +9,7 @@ import ouhk.comps380f.service.TicketService;
 @Controller
 public class IndexController {
 
-     @Autowired
-    private TicketService ticketService;
+
      
     @RequestMapping("/")
     public String list() {
@@ -21,9 +20,5 @@ public class IndexController {
     public String login() {
         return "login";
     }
-    @RequestMapping("index")
-     public String list(ModelMap model) {
-        model.addAttribute("ticketDatabase", ticketService.getTickets());
-        return "index";
-    }
+
 }

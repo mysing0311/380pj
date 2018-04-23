@@ -4,6 +4,9 @@
         <title>Online Bidding</title>
     </head>
     <body>
+      <a href="<c:url value="/login" />">Login</a>
+      <a href="<c:url value="/user/register" />">Register</a>  
+       
         <h2>Items</h2>
         <c:choose>
             <c:when test="${fn:length(ticketDatabase) == 0}">

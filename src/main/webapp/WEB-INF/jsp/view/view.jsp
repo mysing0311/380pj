@@ -4,11 +4,13 @@
         <title>Online Bidding</title>
     </head>
     <body>
+  <security:authorize access="hasAnyRole('USER','ADMIN')">  
         <c:url var="logoutUrl" value="/logout"/>
         <form action="${logoutUrl}" method="post">
             <input type="submit" value="Log out" />
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
+</security:authorize>
 
         <h2>Item #${ticket.id}: <c:out value="${ticket.subject}" /></h2>
         <security:authorize access="hasRole('ADMIN') or principal.username=='${ticket.customerName}'">            
@@ -48,7 +50,10 @@
         <input type="submit" value="End the bid"/><br /><br />
         </form:form>   
         </security:authorize>
+         <security:authorize access="hasAnyRole('USER','ADMIN')"> 
         <a href="<c:url value="/ticket/comment/${ticket.id}" />">Comment</a><br/><br/>
         <a href="<c:url value="/ticket" />">Return to list items</a>
+        </security:authorize>
+        <a href="<c:url value="/ticket/index" />">Return to list items</a>
     </body>
 </html>
