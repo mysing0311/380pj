@@ -2,7 +2,8 @@ package ouhk.comps380f.controller;
 
 import java.io.IOException;
 import javax.annotation.Resource;
-import javax.swing.text.View;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 import ouhk.comps380f.dao.TicketUserRepository;
 import ouhk.comps380f.model.TicketUser;
@@ -24,6 +26,8 @@ public class TicketUserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = {"", "list"}, method = RequestMethod.GET)
     public String list(ModelMap model) {
@@ -69,18 +73,20 @@ public class TicketUserController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public RedirectView create(Form form) throws IOException {
+    public View create(Form form) throws IOException {
         TicketUser user = new TicketUser(form.getUsername(),
                 passwordEncoder.encode(form.getPassword()),
                 form.getRoles()
         );
         ticketUserRepo.save(user);
+        logger.info("User " + form.getUsername() + " created.");
         return new RedirectView("/user/list", true);
     }
 
     @RequestMapping(value = "delete/{username}", method = RequestMethod.GET)
-    public RedirectView deleteTicket(@PathVariable("username") String username) {
+    public View deleteTicket(@PathVariable("username") String username) {
         ticketUserRepo.delete(ticketUserRepo.findOne(username));
+        logger.info("User " + username + " deleted.");
         return new RedirectView("/user/list", true);
     }
 
