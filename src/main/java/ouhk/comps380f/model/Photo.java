@@ -17,7 +17,7 @@ public class Photo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long photoId;
 
     @Column(name = "filename")
     private String name;
@@ -38,11 +38,11 @@ public class Photo implements Serializable {
     private Item item;
 
     public long getId() {
-        return id;
+        return photoId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long photoId) {
+        this.photoId = photoId;
     }
 
     public String getName() {

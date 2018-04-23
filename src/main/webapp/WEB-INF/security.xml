@@ -20,52 +20,51 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
     <b:bean id="dataSource"
             class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <b:property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
-        <b:property name="url" value="jdbc:derby://localhost:1527/dbuser" />
-        <b:property name="username" value="root" />
-        <b:property name="password" value="admin" />
+        <b:property name="url" value="jdbc:derby://localhost:1527/bidding" />
+        <b:property name="username" value="nbuser" />
+        <b:property name="password" value="nbuser" />
     </b:bean>
-   
+    <http auto-config="true">
+        <intercept-url pattern="/ticket/**" access="hasAnyRole('USER','ADMIN')" />
+        <form-login login-page="/login" authentication-failure-url="/login?error" />
+        <logout logout-success-url="/login?logout"
+                invalidate-session="true"
+                delete-cookies="JSESSIONID" />
+        <remember-me key="onlineBiddingSecret" token-validity-seconds="86400" />
+    </http>
+    
+    <context:annotation-config />
+    <b:bean id="ItemUserService" class="ouhk.comps380f.service.ItemUserService" />
+    
+    <authentication-manager>
+        <authentication-provider user-service-ref="ItemUserService" />
+    </authentication-manager>
+    
     <b:bean id="hibernateJpaVendorAdapter"
             class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
-    <!-- Configure the transaction manager bean -->
-    <b:bean id="transactionManager"
-            class="org.springframework.orm.jpa.JpaTransactionManager">
-        <b:property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </b:bean>
-    <!-- Enable annotation driven transaction management -->
-    <tx:annotation-driven/>
-    <!-- Configure base package of the repository interfaces -->
-    <jpa:repositories base-package="ouhk.comps380f.dao"/>
+    
     <b:bean id="entityManagerFactory"
             class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <b:property name="dataSource" ref="dataSource"/>
         <b:property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
-        <!-- Set JPA properties -->
+        
         <b:property name="jpaProperties">
             <b:props>
                 <b:prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</b:prop>
                 <b:prop key="hibernate.show_sql">true</b:prop>
             </b:props>
         </b:property>
-        <!-- Set base package of your entities -->
+        
         <b:property name="packagesToScan" value="ouhk.comps380f.model"/>
     </b:bean>
-    <authentication-manager>
-        <authentication-provider>
-            <jdbc-user-service data-source-ref="dataSource"
-                               users-by-username-query=
-"SELECT username, password, true FROM users WHERE username=?"
-                               authorities-by-username-query=
-"SELECT username, role FROM user_roles WHERE username=?" />
-        </authentication-provider>
-    </authentication-manager>
-
-    <http auto-config="true">
-        <intercept-url pattern="/item/delete/**" access="hasAnyRole('USER','ADMIN')" />
-        <form-login login-page="/login" authentication-failure-url="/login?error" />
-        <logout logout-success-url="/login?logout"
-                invalidate-session="true"
-                delete-cookies="JSESSIONID" />
-        <remember-me key="custSupportSecret" token-validity-seconds="86400" />
-    </http>
+    <b:bean id="transactionManager"
+            class="org.springframework.orm.jpa.JpaTransactionManager">
+        <b:property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </b:bean>
+    
+    <tx:annotation-driven/>
+    
+    
+    <jpa:repositories base-package="ouhk.comps380f.dao"/>
+    <b:bean id="itemUserService" class="ouhk.comps380f.service.ItemUserService" />
 </b:beans>

@@ -71,7 +71,9 @@ public class ItemController {
 
         public void setPhotos(List<MultipartFile> photos) {
             this.photos = photos;
-        }    
+        }
+
+            
 
     }
 

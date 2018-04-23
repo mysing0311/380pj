@@ -56,6 +56,7 @@ public class ItemServiceImpl implements ItemService {
             }
         }
         throw new PhotoNotFound();
+        
     }
 
     @Override
