@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Customer Support</title>
+        <title>Online Bidding</title>
     </head>
     <body>
         <c:url var="logoutUrl" value="/logout"/>
@@ -10,15 +10,15 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Tickets</h2>
+        <h2>Items</h2>
         <security:authorize access="hasRole('ADMIN')">    
             <a href="<c:url value="/user" />">Manage User Accounts</a><br /><br />
         </security:authorize>
-        <a href="<c:url value="/ticket/create" />">Create a Ticket</a><br /><br />
+        <a href="<c:url value="/ticket/create" />">Create a Item</a><br /><br />
 
         <c:choose>
             <c:when test="${fn:length(ticketDatabase) == 0}">
-                <i>There are no tickets in the system.</i>
+                <i>There are no items in the system.</i>
             </c:when>
             <c:otherwise>
                 <c:forEach items="${ticketDatabase}" var="ticket">

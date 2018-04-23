@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Customer Support</title>
+        <title>Online Bidding</title>
     </head>
     <body>
         <c:url var="logoutUrl" value="/logout"/>

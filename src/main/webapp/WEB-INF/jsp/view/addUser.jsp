@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Support</title>
+    <title>Online Bidding</title>
 </head>
 <body>
 <c:url var="logoutUrl" value="/logout"/>
@@ -16,7 +16,7 @@
     <form:label path="username">Username</form:label><br/>
     <form:input type="text" path="username" /><br/><br/>
     <form:label path="password">Password</form:label><br/>
-    <form:input type="text" path="password" /><br/><br/>
+    <form:input type="password" path="password" /><br/><br/>
     <form:label path="roles">Roles</form:label><br/>
     <form:checkbox path="roles" value="ROLE_USER" />ROLE_USER
     <form:checkbox path="roles" value="ROLE_ADMIN" />ROLE_ADMIN
