@@ -18,7 +18,6 @@ import ouhk.comps380f.exception.AttachmentNotFound;
 import ouhk.comps380f.exception.TicketNotFound;
 import ouhk.comps380f.model.Attachment;
 import ouhk.comps380f.model.Ticket;
-import ouhk.comps380f.model.TicketUser;
 import ouhk.comps380f.service.AttachmentService;
 import ouhk.comps380f.service.TicketService;
 import ouhk.comps380f.view.DownloadingView;
@@ -38,7 +37,7 @@ public class TicketController {
         model.addAttribute("ticketDatabase", ticketService.getTickets());
         return "list";
     }
-
+    
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public ModelAndView create() {
         return new ModelAndView("add", "ticketForm", new Form());

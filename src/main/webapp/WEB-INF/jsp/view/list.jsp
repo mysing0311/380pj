@@ -15,7 +15,7 @@
             <a href="<c:url value="/user" />">Manage User Accounts</a><br /><br />
         </security:authorize>
         <a href="<c:url value="/ticket/create" />">Create a Item</a><br /><br />
-
+        
         <c:choose>
             <c:when test="${fn:length(ticketDatabase) == 0}">
                 <i>There are no items in the system.</i>

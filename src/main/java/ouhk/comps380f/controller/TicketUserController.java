@@ -93,11 +93,7 @@ public class TicketUserController {
     public ModelAndView login() {
         return new ModelAndView("login", "ticketUser", new Form());
     }
-    
-    @RequestMapping(value = "index", method = RequestMethod.GET)
-    public ModelAndView index() {
-        return new ModelAndView("index", "ticketUser", new Form());
-    }
+ 
 
     @RequestMapping(value = "delete/{username}", method = RequestMethod.GET)
     public View deleteTicket(@PathVariable("username") String username) {
