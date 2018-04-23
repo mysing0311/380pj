@@ -48,6 +48,8 @@ public class TicketController {
         private String subject;
         private String body;
         private List<MultipartFile> attachments;
+        private Double price;
+        private List<String> comment;
 
         public String getSubject() {
             return subject;
@@ -71,6 +73,22 @@ public class TicketController {
 
         public void setAttachments(List<MultipartFile> attachments) {
             this.attachments = attachments;
+        }
+
+        public Double getPrice() {
+          return price;
+        }
+
+        public void setPrice(Double price) {
+          this.price = price;
+        }
+
+        public List<String> getComment() {
+          return comment;
+        }
+
+        public void setComment(List<String> comment) {
+          this.comment = comment;
         }
 
     }
