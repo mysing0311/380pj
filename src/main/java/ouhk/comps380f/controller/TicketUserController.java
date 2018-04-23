@@ -85,7 +85,12 @@ public class TicketUserController {
                 form.getRoles()
         );
         ticketUserRepo.save(user);
-        return new RedirectView("/user/list", true);
+        return new RedirectView("/login", true);
+    }
+    
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public ModelAndView login() {
+        return new ModelAndView("login", "ticketUser", new Form());
     }
 
     @RequestMapping(value = "delete/{username}", method = RequestMethod.GET)
