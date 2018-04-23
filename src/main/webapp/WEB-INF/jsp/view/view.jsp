@@ -48,7 +48,7 @@
         <input type="submit" value="End the bid"/><br /><br />
         </form:form>   
         </security:authorize>
-        
+        <a href="<c:url value="/ticket/comment/${ticket.id}" />">Comment</a><br/>
         <a href="<c:url value="/ticket" />">Return to list items</a>
     </body>
 </html>

@@ -48,6 +48,12 @@ public class TicketController {
     public ModelAndView bid() {
         return new ModelAndView("bid", "ticketForm", new Form());
     }
+    
+    @RequestMapping(value = "comment", method = RequestMethod.GET)
+    public ModelAndView comment() {
+        return new ModelAndView("comment", "ticketForm", new Form());
+    }
+    
     public static class Form {
 
         private String subject;
@@ -243,4 +249,25 @@ public class TicketController {
         
         return new RedirectView("/ticket/view/" + ticketId, true);
     }
+     @RequestMapping(value = "comment/{ticketId}", method = RequestMethod.GET)
+    public ModelAndView comment(@PathVariable("ticketId") long ticketId) {
+        Ticket ticket = ticketService.getTicket(ticketId);
+        ModelAndView modelAndView = new ModelAndView("comment");
+        modelAndView.addObject("ticket", ticket);
+        Form ticketForm = new Form();
+        modelAndView.addObject("ticketForm", ticketForm);
+        return modelAndView;
+    }
+    @RequestMapping(value = "comment/{ticketId}", method = RequestMethod.POST)
+    public View comment(@PathVariable("ticketId") long ticketId, Form form){
+       
+       ticketService.addComment(ticketId, form.getComment());
+        
+        return new RedirectView("/ticket/view/" + ticketId, true);
+    }
+    
+    
+    
+    
+    
 }
