@@ -25,7 +25,7 @@
                     Item ${ticket.id}:
                     <a href="<c:url value="/ticket/view/${ticket.id}" />">
                         <c:out value="${ticket.subject}" /></a>
-                    (customer: <c:out value="${ticket.customerName}" />)
+                    (Owner: <c:out value="${ticket.customerName}" />)
                     <security:authorize access="hasRole('ADMIN') or 
                                         principal.username=='${ticket.customerName}'">
                         [<a href="<c:url value="/ticket/edit/${ticket.id}" />">Edit</a>]

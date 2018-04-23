@@ -19,7 +19,7 @@
         </security:authorize>
         <br /><br />
         <i>Owner Name - <c:out value="${ticket.customerName}" /></i><br /><br />
-        <c:out value="${ticket.body}" /><br /><br />
+        Description: <c:out value="${ticket.body}" /><br /><br />
         <c:if test="${fn:length(ticket.attachments) > 0}">
             Photos:
             <c:forEach items="${ticket.attachments}" var="attachment"

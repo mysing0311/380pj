@@ -32,10 +32,7 @@ public class Ticket implements Serializable {
 
   //private int bitNum;
   //private final String[] status = {"available","ended"};
-  @LazyCollection(LazyCollectionOption.FALSE)
-  @OneToMany(mappedBy = "ticket",
-          cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<String> comments = new ArrayList<>();
+
 
   @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER,
           cascade = CascadeType.ALL, orphanRemoval = true)
@@ -94,13 +91,7 @@ public class Ticket implements Serializable {
     this.attachments.remove(attachment);
   }
 
-  public List<String> getComments() {
-    return comments;
-  }
 
-  public void setComments(List<String> comments) {
-    this.comments = comments;
-  }
 
 
 
