@@ -54,6 +54,6 @@
         <a href="<c:url value="/ticket/comment/${ticket.id}" />">Comment</a><br/><br/>
         <a href="<c:url value="/ticket" />">Return to list items</a>
         </security:authorize>
-        <a href="<c:url value="/ticket/index" />">Return to list items</a>
+       
     </body>
 </html>
