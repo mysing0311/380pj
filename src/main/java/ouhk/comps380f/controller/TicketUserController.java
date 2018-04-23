@@ -1,13 +1,19 @@
 package ouhk.comps380f.controller;
 
 import java.io.IOException;
+import static java.util.Collections.list;
 import javax.annotation.Resource;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +32,7 @@ public class TicketUserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = {"", "list"}, method = RequestMethod.GET)
@@ -37,8 +43,16 @@ public class TicketUserController {
 
     public static class Form {
 
+        @NotEmpty(message = "Please enter your user name.")
         private String username;
+        @NotEmpty(message = "Please enter your password.")
+        @Size(min = 6, max = 15,
+                message = "Your password must be between {min} and {max} characters.")
         private String password;
+
+        private String confirm_password;
+
+        @NotEmpty(message = "Please select at least one role.")
         private String[] roles;
 
         public String getUsername() {
@@ -57,6 +71,14 @@ public class TicketUserController {
             this.password = password;
         }
 
+        public String getConfirm_password() {
+            return confirm_password;
+        }
+
+        public void setConfirm_password(String confirm_password) {
+            this.confirm_password = confirm_password;
+        }
+
         public String[] getRoles() {
             return roles;
         }
@@ -64,7 +86,6 @@ public class TicketUserController {
         public void setRoles(String[] roles) {
             this.roles = roles;
         }
-
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
@@ -73,14 +94,18 @@ public class TicketUserController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public View create(Form form) throws IOException {
+    public String create(@ModelAttribute("ticketUser") @Valid Form form,
+            BindingResult result) throws IOException {
+        if (result.hasErrors()) {
+            return "addUser";
+        }
         TicketUser user = new TicketUser(form.getUsername(),
                 passwordEncoder.encode(form.getPassword()),
                 form.getRoles()
         );
         ticketUserRepo.save(user);
         logger.info("User " + form.getUsername() + " created.");
-        return new RedirectView("/user/list", true);
+        return "redirect:/user/list";
     }
 
     @RequestMapping(value = "delete/{username}", method = RequestMethod.GET)
