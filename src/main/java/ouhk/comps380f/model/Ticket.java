@@ -26,11 +26,11 @@ public class Ticket implements Serializable {
 
     private String body;
     
-    private double price;
+    private String price;
     
-    private int bitnum;
+    //private int bitNum;
     
-    private final String[] status = {"available","ended"};
+    //private final String[] status = {"available","ended"};
     
     @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, orphanRemoval = true)
@@ -66,6 +66,14 @@ public class Ticket implements Serializable {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getPrice() {
+      return price;
+    }
+
+    public void setPrice(String price) {
+      this.price = price;
     }
 
     public List<Attachment> getAttachments() {

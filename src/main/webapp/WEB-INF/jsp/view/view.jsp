@@ -29,6 +29,10 @@
                     <c:out value="${attachment.name}" /></a>
             </c:forEach><br /><br />
         </c:if>
+        Price: $<c:out value="${ticket.price}" /><br /><br />
+     
+        
+          
         <a href="<c:url value="/ticket" />">Return to list items</a>
     </body>
 </html>

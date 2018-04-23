@@ -48,7 +48,7 @@ public class TicketController {
         private String subject;
         private String body;
         private List<MultipartFile> attachments;
-        private Double price;
+        private String price;
         private List<String> comment;
 
         public String getSubject() {
@@ -75,11 +75,11 @@ public class TicketController {
             this.attachments = attachments;
         }
 
-        public Double getPrice() {
+        public String getPrice() {
           return price;
         }
 
-        public void setPrice(Double price) {
+        public void setPrice(String price) {
           this.price = price;
         }
 
@@ -96,7 +96,7 @@ public class TicketController {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(Form form, Principal principal) throws IOException {
         long ticketId = ticketService.createTicket(principal.getName(),
-                form.getSubject(), form.getBody(), form.getAttachments());
+                form.getSubject(), form.getBody(), form.getAttachments(),form.getPrice());
         return "redirect:/ticket/view/" + ticketId;
     }
 

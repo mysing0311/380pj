@@ -3,7 +3,7 @@ CREATE TABLE ticket (
     name VARCHAR(255) NOT NULL,
     subject VARCHAR(255) NOT NULL,
     body VARCHAR(255) NOT NULL,
-    price double check(price>0),
+    price VARCHAR(255) NOT NULL,
     bidNum int default 0,
     status VARCHAR(255) default 'avaliable',
     winner VARCHAR(255),
@@ -20,8 +20,8 @@ CREATE TABLE attachment (
     FOREIGN KEY (ticket_id) REFERENCES ticket(id) 
 );
 
-CREATE TABLE comment (
+/*CREATE TABLE comment (
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     ticketID INTEGER DEFAULT NULL,
     comment VARCHAR(255)
-    );
+    );*/
