@@ -22,13 +22,13 @@ public class Comment implements Serializable {
 
   private int ticketID;
 
-  @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER,
-          cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<String> comment = new ArrayList<>();
+//@OneToMany(mappedBy = "comment", fetch = FetchType.EAGER,
+  //        cascade = CascadeType.ALL, orphanRemoval = true)
+  //private List<String> comment = new ArrayList<>();
   
   
-  @ManyToOne
-  @JoinColumn(name = "ticket_id")
+  //@ManyToOne
+  //@JoinColumn(name = "ticket_id")
   private Ticket ticket;
 
   public long getId() {
@@ -47,14 +47,14 @@ public class Comment implements Serializable {
     this.ticketID = ticketID;
   }
 
-  public List<String> getComment() {
+ /* public List<String> getComment() {
     return comment;
   }
 
   public void setComment(List<String> comment) {
     this.comment = comment;
   }
-
+*/
   public Ticket getTicket() {
     return ticket;
   }

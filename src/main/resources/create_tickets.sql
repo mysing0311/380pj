@@ -20,8 +20,8 @@ CREATE TABLE attachment (
     FOREIGN KEY (ticket_id) REFERENCES ticket(id) 
 );
 
-CREATE TABLE Comment (
+CREATE TABLE comment (
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     ticketID INTEGER DEFAULT NULL,
-    comment VARCHAR(255),
+    comment VARCHAR(255)
     );
