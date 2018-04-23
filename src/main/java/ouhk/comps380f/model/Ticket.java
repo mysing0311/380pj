@@ -31,6 +31,8 @@ public class Ticket implements Serializable {
   private String bidNum;
   
   private String status;
+  
+  private String comment;
   //private final String[] status = {"available","ended"};
 
 
@@ -105,6 +107,14 @@ public class Ticket implements Serializable {
   public void deleteAttachment(Attachment attachment) {
     attachment.setTicket(null);
     this.attachments.remove(attachment);
+  }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public void setComment(String comment) {
+    this.comment = comment;
   }
 
 }

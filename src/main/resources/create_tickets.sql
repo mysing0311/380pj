@@ -6,6 +6,7 @@ CREATE TABLE ticket (
     price VARCHAR(255) NOT NULL,
     bidNum VARCHAR(255) DEFAULT '0',
     status VARCHAR(255) DEFAULT 'available',
+    comment VARCHAR(255),
     winner VARCHAR(255),
     PRIMARY KEY (id)
 );

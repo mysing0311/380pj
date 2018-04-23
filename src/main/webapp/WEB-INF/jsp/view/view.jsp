@@ -34,6 +34,8 @@
         No. of bids: <c:out value="${ticket.bidNum}" /><br /><br />
         
         Status: <c:out value="${ticket.status}" /><br /><br />
+        
+        Comment: <c:out value="${ticket.comment}" /><br /><br /> 
 
           
         <a href="<c:url value="/ticket" />">Return to list items</a>

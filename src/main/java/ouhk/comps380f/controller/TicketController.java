@@ -51,6 +51,7 @@ public class TicketController {
         private String price;
         private String bidNum;
         private String status;
+        private String comment;
         //private List<String> comment;
 
         public String getSubject() {
@@ -101,6 +102,14 @@ public class TicketController {
           this.status = status;
         }
         
+        public String getComment() {
+          return comment;
+        }
+
+        public void setComment(String comment) {
+          this.comment = comment;
+        }
+        
         /*public List<String> getComments() {
           return comment;
         }
@@ -109,14 +118,13 @@ public class TicketController {
           this.comment = comment;
         }
          */
-
     
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(Form form, Principal principal) throws IOException {
         long ticketId = ticketService.createTicket(principal.getName(),
-                form.getSubject(), form.getBody(), form.getAttachments(),form.getPrice(),form.getBidNum(),form.getStatus());
+                form.getSubject(), form.getBody(), form.getAttachments(),form.getPrice(),form.getBidNum(),form.getStatus(),form.getComment());
         return "redirect:/ticket/view/" + ticketId;
     }
 
@@ -186,7 +194,7 @@ public class TicketController {
         }
 
         ticketService.updateTicket(ticketId, form.getSubject(),
-                form.getBody(), form.getAttachments(),form.getPrice(),form.getBidNum(),form.getStatus());
+                form.getBody(), form.getAttachments(),form.getPrice(),form.getBidNum(),form.getStatus(),form.getComment());
         return new RedirectView("/ticket/view/" + ticketId, true);
     }
 

@@ -24,8 +24,8 @@
             <form:label path="price">Expected Price($)</form:label><br/>
             <form:input type="text" path="price" /><br/><br/>
             
-            <b>Comment</b><br/>
-            <input type="text" name="comment" /><br/><br/>
+            <form:label path="comment">Comment</form:label><br/>
+            <form:textarea path="comment" rows="5" cols="30" /><br/><br/>
             
             <input type="submit" value="Submit"/>
         </form:form>
