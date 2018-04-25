@@ -93,7 +93,11 @@ public class TicketUserController {
     public ModelAndView login() {
         return new ModelAndView("login", "ticketUser", new Form());
     }
- 
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public View redirectLogin(){
+        
+        return new RedirectView("/ticket/list", true);
+    }
 
     @RequestMapping(value = "delete/{username}", method = RequestMethod.GET)
     public View deleteTicket(@PathVariable("username") String username) {
